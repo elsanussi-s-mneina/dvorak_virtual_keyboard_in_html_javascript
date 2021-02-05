@@ -26,6 +26,6 @@ Limitation: The application currently only supports one line of output.
 
 
 ## About the Developer of this DVORAK Virtual Keyboard
-www.linkedin.com/in/elsanussi-mneina-57a8181b5
+https://www.linkedin.com/in/elsanussi-s-mneina/
 
-github.com/elsanussi-s-mneina
+https://github.com/elsanussi-s-mneina
