@@ -31,7 +31,7 @@ SOFTWARE.
 		<h1>DVORAK Virtual Keyboard</h1>
 		<p>Type as though you have a DVORAK keyboard set up in the following text area.</p>
 		<p>Click the colored box below then type.</p>
-		<p id="outputText" style="background-color: lightblue; min-height: 40px;;"></p>
+		<textarea id="outputText" style="background-color: lightblue; min-height: 40px;;"></textarea>
 		<p id="firstRow">
 			<button id="row0key0" onclick="printToOutputFrom('row0key0');">`</button>
 			<button id="row0key1" onclick="printToOutputFrom('row0key1');">1</button>
@@ -49,6 +49,7 @@ SOFTWARE.
 		</p>
 
 		<p id="secondRow">
+		<button id="tabKey" onclick="printToOutput('\t');">(tab)</button>
 		<button id="row1key0" onclick="printToOutputFrom('row1key0');">'</button>
 		<button id="row1key1" onclick="printToOutputFrom('row1key1');">,</button>
 		<button id="row1key2" onclick="printToOutputFrom('row1key2');">.</button>
@@ -96,7 +97,7 @@ SOFTWARE.
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.1</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.2</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
@@ -236,7 +237,7 @@ function onKeyUp(e)
 
 function printToOutput(output)
 {
-	document.getElementById('outputText').textContent += output; 
+	document.getElementById('outputText').value += output; 
 }
 
 function printToOutputFrom(textSourceId)
