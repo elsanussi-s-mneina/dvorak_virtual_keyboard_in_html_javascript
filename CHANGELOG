@@ -1,3 +1,4 @@
 2021-02-05: v1.01
 Fixed error where the software wrote a lowercase letter i, instead of an uppercase letter i, and vice versa.
 Increment the version number to 1.01.
+- Update release date in the footer.
