@@ -31,7 +31,8 @@ SOFTWARE.
 		<h1>DVORAK Virtual Keyboard</h1>
 		<p>Type as though you have a DVORAK keyboard set up in the following text area.</p>
 		<p>Click the colored box below then type.</p>
-		<textarea disabled id="outputText" rows="5" cols="50" style="background-color: lightblue; min-height: 40px; padding: 7px;"></textarea>
+		<textarea disabled id="outputText" rows="5" cols="50" aria-live="polite" style="background-color: lightblue; min-height: 40px; padding: 7px;"></textarea>
+		<!-- We use the aria-live attribute so that screenreaders will read out changes to the textarea when they occur. This is useful for accessibility. -->
 		<p id="firstRow">
 			<button id="row0key0" onclick="printToOutputFrom('row0key0');">`</button>
 			<button id="row0key1" onclick="printToOutputFrom('row0key1');">1</button>
@@ -99,7 +100,7 @@ SOFTWARE.
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.4</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.5</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
