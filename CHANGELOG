@@ -16,3 +16,6 @@ New feature: can now type a new line by pressing a graphical button titled "(new
 
 2021-02-05: v1.0.5
 Accessibility improvements: When the text the user has typed changes, the screenreader reads out the text. This is necessary for screenreader users to be able to notice the change easily.
+
+2021-02-05: v1.0.6
+Add ability to copy text into clipboard by pressing a button.

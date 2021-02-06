@@ -33,6 +33,7 @@ SOFTWARE.
 		<p>Click the colored box below then type.</p>
 		<textarea disabled id="outputText" rows="5" cols="50" aria-live="polite" style="background-color: lightblue; min-height: 40px; padding: 7px;"></textarea>
 		<!-- We use the aria-live attribute so that screenreaders will read out changes to the textarea when they occur. This is useful for accessibility. -->
+		<button id="copyButton" onclick="copyTextIntoClipboard();">Copy text</button>
 		<p id="firstRow">
 			<button id="row0key0" onclick="printToOutputFrom('row0key0');">`</button>
 			<button id="row0key1" onclick="printToOutputFrom('row0key1');">1</button>
@@ -100,7 +101,7 @@ SOFTWARE.
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.5</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.6</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
@@ -786,6 +787,18 @@ function logKey(e)
 	console.log(e);
 	var output = fromDvorakToQwerty(e.code, e.shiftKey);
 	printToOutput(output);
+}
+
+function copyTextIntoClipboard()
+{
+
+	/* Select the text field */
+	log.select(); 
+	log.setSelectionRange(0, 99999); /* For mobile devices */
+
+	/* Copy the text inside the text field */
+	document.execCommand("copy");
+
 }
 		</script>
 	</body>
