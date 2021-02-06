@@ -19,3 +19,6 @@ Accessibility improvements: When the text the user has typed changes, the screen
 
 2021-02-05: v1.0.6
 Add ability to copy text into clipboard by pressing a button.
+
+2021-02-06: v1.0.7
+Add ability to press shift key using a button.

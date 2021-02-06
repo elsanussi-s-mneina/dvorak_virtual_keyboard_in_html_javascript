@@ -82,6 +82,8 @@ SOFTWARE.
 		</p>
 
 		<p id="fourthRow">
+			<button id="leftShift" onclick="pressShift();">(shift)</button>
+
 			<button id="row3key0" onclick="printToOutputFrom('row3key0');">;</button>
 			<button id="row3key1" onclick="printToOutputFrom('row3key1');">q</button>
 			<button id="row3key2" onclick="printToOutputFrom('row3key2');">j</button>
@@ -92,19 +94,22 @@ SOFTWARE.
 			<button id="row3key7" onclick="printToOutputFrom('row3key7');">w</button>
 			<button id="row3key8" onclick="printToOutputFrom('row3key8');">v</button>
 			<button id="row3key9" onclick="printToOutputFrom('row3key9');">z</button>
+
+			<button id="rightShift" onclick="pressShift();">(shift)</button>
 		</p>
 
 		<p id="fifthRow">
-			<button id="spaceBar" onclick="printToOutput(' ');"> (space) </button>
-			<button id="newLine" onclick="printToOutput('\n');"> (new line) </button>
+			<button id="spaceBar" onclick="printToOutput(' '); changeKeysToUnshiftedValues();"> (space) </button>
+			<button id="newLine" onclick="printToOutput('\n'); changeKeysToUnshiftedValues();"> (new line) </button>
 
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-05 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.6</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-06 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.7</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
+			var permanentShift = false;
 
 document.addEventListener('keypress', logKey);
 document.addEventListener('keydown', onKeyDown);
@@ -238,6 +243,11 @@ function onKeyUp(e)
 	console.log(e);	
 }
 
+function pressShift()
+{
+	permanentShift = false;
+	changeKeysToShiftedValues();
+}
 
 function printToOutput(output)
 {
@@ -247,6 +257,11 @@ function printToOutput(output)
 function printToOutputFrom(textSourceId)
 {
 	printToOutput(document.getElementById(textSourceId).textContent);
+	
+	if (!permanentShift)
+	{
+		changeKeysToUnshiftedValues();
+	}
 }
 
 function fromDvorakToQwerty(keyCode, shiftKey) 
