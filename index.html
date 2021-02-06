@@ -68,6 +68,8 @@ SOFTWARE.
 		</p>
 
 		<p id="thirdRow">
+			<button id="capsLock" onclick="toggleCapsLock();">(caps lock)</button>
+
 			<button id="row2key0" onclick="printToOutputFrom('row2key0');">a</button>
 			<button id="row2key1" onclick="printToOutputFrom('row2key1');">o</button>
 			<button id="row2key2" onclick="printToOutputFrom('row2key2');">e</button>
@@ -99,17 +101,18 @@ SOFTWARE.
 		</p>
 
 		<p id="fifthRow">
-			<button id="spaceBar" onclick="printToOutput(' '); changeKeysToUnshiftedValues();"> (space) </button>
-			<button id="newLine" onclick="printToOutput('\n'); changeKeysToUnshiftedValues();"> (new line) </button>
+			<button id="spaceBar" onclick="printToOutput(' '); nextShiftValue();"> (space) </button>
+			<button id="newLine" onclick="printToOutput('\n'); nextShiftValue();"> (new line) </button>
 
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-06 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.7</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-06 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.8</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
 			var permanentShift = false;
+			var capsLock = false;
 
 document.addEventListener('keypress', logKey);
 document.addEventListener('keydown', onKeyDown);
@@ -118,21 +121,25 @@ document.addEventListener('keyup', onKeyUp);
 function changeKeysToShiftedValues()
 {
 	document.getElementById("row0key0").innerText = "~";
-	document.getElementById("row0key1").innerText = "!";
-	document.getElementById("row0key2").innerText = "@";
-	document.getElementById("row0key3").innerText = "#";
-	document.getElementById("row0key4").innerText = "$";
-	document.getElementById("row0key5").innerText = "%";
-	document.getElementById("row0key6").innerText = "^";
-	document.getElementById("row0key7").innerText = "&";
-	document.getElementById("row0key8").innerText = "*";
-	document.getElementById("row0key9").innerText = "(";
-	document.getElementById("row0key10").innerText = ")";
-	document.getElementById("row0key11").innerText = "{";
-	document.getElementById("row0key12").innerText = "}";
-	document.getElementById("row1key0").innerText = "\"";
-	document.getElementById("row1key1").innerText = "<";
-	document.getElementById("row1key2").innerText = ">";
+
+	if (!capsLock)
+	{
+		document.getElementById("row0key1").innerText = "!";
+		document.getElementById("row0key2").innerText = "@";
+		document.getElementById("row0key3").innerText = "#";
+		document.getElementById("row0key4").innerText = "$";
+		document.getElementById("row0key5").innerText = "%";
+		document.getElementById("row0key6").innerText = "^";
+		document.getElementById("row0key7").innerText = "&";
+		document.getElementById("row0key8").innerText = "*";
+		document.getElementById("row0key9").innerText = "(";
+		document.getElementById("row0key10").innerText = ")";
+		document.getElementById("row0key11").innerText = "{";
+		document.getElementById("row0key12").innerText = "}";
+		document.getElementById("row1key0").innerText = "\"";
+		document.getElementById("row1key1").innerText = "<";
+		document.getElementById("row1key2").innerText = ">";
+	}
 	document.getElementById("row1key3").innerText = "P";
 	document.getElementById("row1key4").innerText = "Y";
 	document.getElementById("row1key5").innerText = "F";
@@ -140,8 +147,12 @@ function changeKeysToShiftedValues()
 	document.getElementById("row1key7").innerText = "C";
 	document.getElementById("row1key8").innerText = "R";
 	document.getElementById("row1key9").innerText = "L";
-	document.getElementById("row1key10").innerText = "?";
-	document.getElementById("row1key11").innerText = "+";
+
+	if (!capsLock)
+	{
+		document.getElementById("row1key10").innerText = "?";
+		document.getElementById("row1key11").innerText = "+";
+	}
 
 	document.getElementById("row2key0").innerText = "A";
 	document.getElementById("row2key1").innerText = "O";
@@ -153,9 +164,13 @@ function changeKeysToShiftedValues()
 	document.getElementById("row2key7").innerText = "T";
 	document.getElementById("row2key8").innerText = "N";
 	document.getElementById("row2key9").innerText = "S";
-	document.getElementById("row2key10").innerText = "_";
+	if (!capsLock)
+	{
 
-	document.getElementById("row3key0").innerText = ":";
+		document.getElementById("row2key10").innerText = "_";
+
+		document.getElementById("row3key0").innerText = ":";
+	}
 	document.getElementById("row3key1").innerText = "Q";
 	document.getElementById("row3key2").innerText = "J";
 	document.getElementById("row3key3").innerText = "K";
@@ -222,6 +237,23 @@ function changeKeysToUnshiftedValues()
 
 function onKeyDown(e)
 {
+	// Handle pressing of caps lock key.
+	if (e.getModifierState('CapsLock'))
+	{
+		if (!capsLock)
+		{
+			toggleCapsLock();
+		}
+	}
+	else
+	{
+		if (capsLock)
+		{
+			toggleCapsLock();
+		}
+	}
+
+	// Handle pressing of shift keys
 	if (e.code === "ShiftRight"
 	 || e.code === "ShiftLeft")
 	{
@@ -249,6 +281,20 @@ function pressShift()
 	changeKeysToShiftedValues();
 }
 
+function toggleCapsLock()
+{
+	if (capsLock)
+	{
+		capsLock = false;
+		changeKeysToUnshiftedValues();
+	}
+	else
+	{
+		capsLock = true;
+		changeKeysToShiftedValues();
+	}
+}
+
 function printToOutput(output)
 {
 	document.getElementById('outputText').value += output; 
@@ -257,8 +303,12 @@ function printToOutput(output)
 function printToOutputFrom(textSourceId)
 {
 	printToOutput(document.getElementById(textSourceId).textContent);
-	
-	if (!permanentShift)
+	nextShiftValue();
+}
+
+function nextShiftValue()
+{
+	if (!capsLock && !permanentShift)
 	{
 		changeKeysToUnshiftedValues();
 	}

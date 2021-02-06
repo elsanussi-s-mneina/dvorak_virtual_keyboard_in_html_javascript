@@ -22,3 +22,6 @@ Add ability to copy text into clipboard by pressing a button.
 
 2021-02-06: v1.0.7
 Add ability to press shift key using a button.
+
+2021-02-06: v1.0.8
+Add ability to toggle caps lock state using a button or key on keyboards.
