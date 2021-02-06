@@ -1,8 +1,8 @@
 # Introduction
-This is an application that runs in the web browser, and allows the user to type using the DVORAK keyboard layout without having to install it anywhere.
+This is an application that runs in the web browser, and allows the user to type using the Dvorak keyboard layout without having to install it anywhere.
 
 ## Use Case
-You are used to typing with DVORAK, but often have to type on computers without DVORAK installed. Installing DVORAK on the other computers would be too inconvenient.
+You are used to typing with Dvorak, but often have to type on computers without Dvorak installed. Installing Dvorak on the other computers would be too inconvenient.
 
 ## User Requirements
   - Web browser with Javascript enabled
@@ -12,13 +12,13 @@ You are used to typing with DVORAK, but often have to type on computers without 
 Features:
 The application captures keyboard input.
 
-It supports the shift key, and space key. It does not support the tab key as input.
+It supports the shift key, and space key. 
+
+It does support the tab key as input.
 
 The application provides an output area where the text the user types appears.
 
 The application provides an on-screen keyboard that can be pressed directly.
-
-Limitation: The application currently only supports one line of output.
 
 ## Developer Requirements
  - Web browser (with Javascript enabled)
