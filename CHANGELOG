@@ -1,9 +1,9 @@
-2021-02-05: v1.01
+2021-02-05: v1.0.1
 Fixed error where the software wrote a lowercase letter i, instead of an uppercase letter i, and vice versa.
 Increment the version number to 1.01.
 - Update release date in the footer.
 
-2021-02-05: v1.02
+2021-02-05: v1.0.2
 It is now possible to input the horizontal tab character by pressing an HTML button. The physical tab character on the keyboard's functionality has not been changed at this time. It is usually used for navigation in browsers, and interfering with it will harm accessibility.
 Minor changes: changed to text area instead of a paragraph element for text output. This is more in line with what the HTML elements' purpose.
 
@@ -11,5 +11,5 @@ Minor changes: changed to text area instead of a paragraph element for text outp
 Bugfix: prevent repeated characters from appearing. 
 This was resolved by disabling the textarea HTML element.
 
-2021-02-06: v1.0.4
+2021-02-05: v1.0.4
 New feature: can now type a new line by pressing a graphical button titled "(new line)".
