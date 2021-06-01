@@ -1,3 +1,7 @@
+2021-06-01: v1.2.0
+- implement backspace key
+- implement clear text key (clear all text)
+
 2021-02-05: v1.0.1
 Fixed error where the software wrote a lowercase letter i, instead of an uppercase letter i, and vice versa.
 Increment the version number to 1.01.
