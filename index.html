@@ -33,6 +33,8 @@ SOFTWARE.
 		<textarea disabled id="outputText" rows="5" cols="50" aria-live="polite" style="background-color: lightblue; min-height: 40px; padding: 7px;"></textarea>
 		<!-- We use the aria-live attribute so that screenreaders will read out changes to the textarea when they occur. This is useful for accessibility. -->
 		<button id="copyButton" onclick="copyTextIntoClipboard();">Copy text</button>
+		<button id="clearTextButton" onclick="clearText();">Clear text</button>
+
 		<p id="firstRow">
 			<button id="row0key0" onclick="printToOutputFrom('row0key0');">`</button>
 			<button id="row0key1" onclick="printToOutputFrom('row0key1');">1</button>
@@ -47,6 +49,7 @@ SOFTWARE.
 			<button id="row0key10" onclick="printToOutputFrom('row0key10');">0</button>
 			<button id="row0key11" onclick="printToOutputFrom('row0key11');">[</button>
 			<button id="row0key12" onclick="printToOutputFrom('row0key12');">]</button>
+			<button id="deleteFinalCharButton" onclick="deleteFinalCharacter();">(delete last character)</button>
 		</p>
 
 		<p id="secondRow">
@@ -106,7 +109,7 @@ SOFTWARE.
 		</p>
 
 
-		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-02-06 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.0.8</a></footer>
+		<footer>Created by <a href="https://github.com/elsanussi-s-mneina">Elsanussi Mneina</a> Last updated on 2021-06-01 <a href="https://github.com/elsanussi-s-mneina/dvorak_virtual_keyboard_in_html_javascript">v1.2.0</a></footer>
 
 		<script>
 			const log = document.getElementById('outputText');
@@ -258,6 +261,11 @@ function onKeyDown(e)
 	{
 		changeKeysToShiftedValues();
 	}
+	else if (e.code === "Backspace")
+	{
+		deleteFinalCharacter();
+	}
+
 	console.log("onKeyDown:");
 	console.log(e);
 }
@@ -840,6 +848,10 @@ function fromDvorakToQwerty(keyCode, shiftKey)
 			return "]";
 		}
 	}
+	else if (keyCode == "Backspace")
+	{
+		return "";
+	}
 	else
 	{
 		return keyCode;
@@ -864,6 +876,34 @@ function copyTextIntoClipboard()
 	document.execCommand("copy");
 
 }
+
+function clearText()
+{
+	log.value = "";
+}
+
+function lastTwoCharactersAreForLineBreak(someText)
+{
+	const lastTwoChars = someText.substring(someText.length - 2);
+	return lastTwoChars == "\r\n" || lastTwoChars == "\n\r";
+}
+
+function deleteFinalCharacter()
+{
+	const lengthOfText = log.value.length;
+	
+	
+	let deletionCount = 1; // How many characters to delete.
+	if (lastTwoCharactersAreForLineBreak(log.value))
+	{
+		// Line break is implemented as two characters,
+		// so delete both characters.
+		deletionCount = 2;
+	}
+
+	log.value = log.value.substring(0, lengthOfText - deletionCount);
+}
+
 		</script>
 	</body>
 </html>
